@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-int main(int argc, char c)
+#include <unistd.h>
+
+#define read 0
+#define write 1
+
+int main(int argc, char **k)
 {
-	int *r, *w;
-	int *fd[2] = {r, w};
+	int fd[2];
 	pipe(fd);
 
 	pid_t pid, c;
@@ -12,4 +16,5 @@ int main(int argc, char c)
 	c = fork();
 
 	pid = getpid();
+
 }
