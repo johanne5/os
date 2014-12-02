@@ -3,39 +3,47 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-#define READ 0
-#define WRITE 1
-#define BSIZE 1000
+#define READ fd[0]
+#define WRITE fd[1]
+#define BSIZE 100000
 
 int main(int argc, char **argv)
 {
-	printf("parent process reporting for duty\n");
 	
 	char buf[BSIZE];
 	
 	int fd[2];
 	pipe(fd);
 	
-
-	int c = fork();
-
-	switch(c)
+	for(int i=0; i<2; i++)
 	{
+		switch(fork())
+		{
 		case 0: /*child*/
-			//close(READ);
-			//dup2(fd[WRITE], 1);
-			//dup2(fd[WRITE], 2);
-			//execlp("bin/cat", "hej", " man", NULL);
-			//write(fd[WRITE], "hellooo", BSIZE);
-			break;
+			switch(i)
+			{
+				case 0:
+					close(READ);
+					dup2(WRITE, 1);
+					//execl("/usr/bin/printenv", "printenv", NULL);
+					execl("/usr/bin/printenv", "printenv", NULL);
+				case 1:
+					close(READ);
+					dup2(WRITE, 1);
+					execl("/bin/sort", "sort", "c\nb\na\n", NULL);
+			}
+			
 		default: /*parent*/
-			printf("so this happens...\n");
-			//read(fd[READ], buf, BSIZE);
-			//printf("%s\n", buf);
-			close(READ);
-			close(WRITE);
-			break;
-	}
 
+			read(READ, buf, BSIZE);
+			//write(WRITE,buf, BSIZE);
+			if(1==i)
+			{
+			printf("%s\n", buf);
+			}
+			break;
+		}
+	}
+	
 	return 0;
 }
