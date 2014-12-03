@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
 #define READ fd[0]
 #define WRITE fd[1]
@@ -10,40 +11,64 @@
 int main(int argc, char **argv)
 {
 	
+	char grepargs[1000];
+
+	int i=0;
+	argc--;
+	while(0!=argc--){
+		
+		while(NULL!=argv[1][0])
+		{
+			grepargs[i++] = argv[1][0];
+			argv[1]++;
+		}
+		if(0!=argc)
+		{
+			grepargs[i++] = '\\';
+			grepargs[i++] = '|';
+		}
+		
+		argv++;
+	}
+
+	const char *printenv[] = {"printenv", NULL};
+	const char *sort[] = {"sort", NULL};
+	const char *grep[] = {"grep", grepargs, NULL};
+	const char *less[] = {"less", NULL};
+	const char *echo[] = {"echo", "hej\napa\n", NULL};
+
+	const char **commands[] = {printenv, grep, sort, less, NULL};
+	const char ***cmd = commands;
 	char buf[BSIZE];
 	
 	int fd[2];
 	pipe(fd);
-	
-	for(int i=0; i<2; i++)
+
+	while(NULL != *cmd)
 	{
+
 		switch(fork())
 		{
-		case 0: /*child*/
-			switch(i)
-			{
-				case 0:
-					close(READ);
-					dup2(WRITE, 1);
-					//execl("/usr/bin/printenv", "printenv", NULL);
-					execl("/usr/bin/printenv", "printenv", NULL);
-				case 1:
-					close(READ);
-					dup2(WRITE, 1);
-					execl("/bin/sort", "sort", "c\nb\na\n", NULL);
-			}
-			
-		default: /*parent*/
-
-			read(READ, buf, BSIZE);
-			//write(WRITE,buf, BSIZE);
-			if(1==i)
-			{
-			printf("%s\n", buf);
-			}
-			break;
+			case 0:
+				
+				if(NULL==cmd[1])
+				{
+					close(WRITE);
+				}
+				dup2(READ, 0);
+				dup2(WRITE, 1);
+								
+				execvp(cmd[0][0],(char *const*) cmd[0]);
+			default:
+				close(WRITE);
+				wait(NULL);
+				cmd = cmd + 1;			
 		}
+
 	}
-	
+	//read(READ, buf, BSIZE);
+	//printf("%s\n", buf);
+	//close(READ);
+	//close(WRITE);
 	return 0;
 }
