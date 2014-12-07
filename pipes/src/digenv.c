@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <string.h>
 							//macros for readability
 #define READ fd[0]			//macro for file descriptor's read end
 #define WRITE fd[1]			//macro for file descriptor's write end
@@ -17,7 +18,7 @@ If this program is called with one or more arguments, they will all be passed to
 //argv: a string array with parameters
 int main(int argc, char **argv)
 {
-	argv[0] = "grep";							//changing the first argument which is something like ./digenv to grep in preparation for call to grep
+	argv[0] = (char *) "grep";					//changing the first argument which is something like ./digenv to grep in preparation for call to grep
 	const char **grep = (const char**) argv;	//string array for call to grep
 
 	const char *pager[] = {NULL!=getenv("PAGER") ? getenv("PAGER") : "less", NULL};	//string array for call to the pager (user defined or less)	
@@ -33,7 +34,8 @@ int main(int argc, char **argv)
 	/* Loop to iterate over the programs to call. The list is null-terminated */
 	while(NULL != cmd[0])
 	{
-		if(1==argc && "grep"==cmd[0][0])	//if program for this iteration is grep and no arguments have been passed to this program, grep is not run
+		if(1==argc && !strcmp("grep", cmd[0][0]))	//if program for this iteration is grep and no arguments have been passed to this program, grep is not run
+		//if(1==argc && "grep" == cmd[0][0])
 		{
 			cmd++;
 			continue;
