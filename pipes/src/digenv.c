@@ -4,21 +4,25 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
-							//macros for readability
+//macros for readability
 #define READ fd[0]			//macro for file descriptor's read end
 #define WRITE fd[1]			//macro for file descriptor's write end
 
 /*
-If this program is called with no arguments, it will execute sort on the output from printenv and forward to a pager.
-If the PAGER environment variable is set, the program will use that. Otherwise less. If less fails, the program will use more.
-If this program is called with one or more arguments, they will all be passed to grep which is executed before sort in the above sequence when program is called with no arguments.
+If this program is called with no arguments, it 
+will execute sort on the output from printenv and forward to a pager.
+If the PAGER environment variable is set, the program will use that.
+Otherwise less. If less fails, the program will use more.
+If this program is called with one or more arguments,
+they will all be passed to grep which is executed before
+sort in the above sequence when program is called with no arguments.
 */
 
 //argc: the number of arguments in the program call
 //argv: a string array with parameters
 int main(int argc, char **argv)
 {
-	argv[0] = (char *) "grep";					//changing the first argument which is something like ./digenv to grep in preparation for call to grep
+	argv[0] = (char *) "grep";	//changing the first argument which is something like ./digenv to grep in preparation for call to grep
 	const char **grep = (const char**) argv;	//string array for call to grep
 
 	const char *pager[] = {NULL!=getenv("PAGER") ? getenv("PAGER") : "less", NULL};	//string array for call to the pager (user defined or less)	
