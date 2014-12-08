@@ -1,0 +1,7 @@
+Script started on Mon Dec  8 18:08:40 2014
+[?1034hbash-3.2$ gcc -O3 -Wall -o digenv digenv.c
+bash-3.2$ ls
+digenv		digenv.c	scripts
+bash-3.2$ exit
+
+Script done on Mon Dec  8 18:09:17 2014
