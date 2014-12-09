@@ -14,23 +14,23 @@ int main(int argc, char *argv[])
 	char buf[BUFSIZE];
 	char *args[5];
 	char ** sp, * tp;
-	int bg = 0;
+	int bg;
 	//gets(buf);
 	//argv[0] = buf;
 	while(1)
 	{
 		gets(buf);
 		tp = buf;
+		bg=0;
 		while('\0'!=*tp++)
 		{
 			if(*tp=='&')
 			{
+				*tp=' ';
 				bg=1;
 				break;
 			}
 		}
-
-		printf("%d\n", bg);
 
 		sp=args;
 		sp[0] = strtok(buf, " ");
@@ -50,14 +50,25 @@ int main(int argc, char *argv[])
 			continue;
 		}
 
-
-		switch(fork())
+		pid_t pid;
+		int status;
+		switch(pid = fork())
 		{
 			case 0:
 				execvp(args[0], args);
 				printf("something went wrong\n");
+				exit(1);
 			default:
-				if(!bg) wait(NULL);
+			
+				//wait(NULL);
+				
+				status=0;
+				if(!bg)
+				{
+					printf("%d\n", pid);
+					printf("%d\n", waitpid(pid, &status, WEXITSTATUS) );
+					
+				}
 		}
 	}
 }
