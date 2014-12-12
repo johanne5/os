@@ -1,0 +1,197 @@
+Script started on Fri 12 Dec 2014 12:03:47 CET
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ ls
+cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ gcc -Wall -O3 -D SIGNALDETECTION=ENABLE -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+
+
+Ouch! That hurts!
+
+
+Ouch! That hurts!
+cli   s sleep 100 &
+sleep 100 &
+Created background process 10583
+kill 10583
+kill 10583
+Created foreground process 10584
+10584 terminated normally after 1037 usec
+ls
+ls
+Created foreground process 10585
+cli  cli.c  scripts  sub
+10585 terminated normally after 1530 usec
+^CIgnored SIGINT!!
+exit
+exit
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+sleep 100 &
+sleep 100 &
+Created background process 10603
+kill 10603
+kill 10603
+Created foreground process 10612
+10612 terminated normally after 1039 usec
+ps -all
+ps -all
+Created foreground process 10613
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S 2236076 8921 7924  0  80   0 - 26781 n_tty_ pts/0    00:00:00 script
+1 S 2236076 8923 8921  0  80   0 - 26782 n_tty_ pts/0    00:00:00 script
+0 S 2236076 10254 8924  0 80   0 - 26781 n_tty_ pts/1    00:00:00 script
+1 S 2236076 10256 10254  0 80  0 - 26782 n_tty_ pts/1    00:00:00 script
+0 S 2236076 10602 10257  0 80  0 -   984 wait   pts/2    00:00:00 cli
+0 Z 2236076 10603 10602  0 80  0 -     0 exit   pts/2    00:00:00 sleep <defunct>
+0 R 2236076 10613 10602  0 80  0 - 27036 -      pts/2    00:00:00 ps
+10613 terminated normally after -887332 usec
+kill -9 sleep
+kill -9 sleep
+Created foreground process 10614
+kill: can't find process "sleep"
+10614 exited with status 256 after 11123 usec
+kill -9 10603
+kill -9 10603
+Created foreground process 10615
+10615 terminated normally after 1055 usec
+exit
+exit
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear./cliclear./cli
+sleep 10 &
+sleep 10 &
+Created background process 10626
+10626 terminated normally [signal]
+^[[A^[[A        k sleep 10&
+sleep 10&
+Created background process 10627
+kill 10627
+kill 10627
+Created foreground process 10636
+10636 terminated normally after 997 usec
+kill -9 10627
+kill -9 10627
+Created foreground process 10637
+10637 terminated normally after 1035 usec
+^[[A    sleep 20&
+sleep 20&
+Created background process 10639
+kill -9 10639
+kill -9 10639
+Created foreground process 10640
+10640 terminated normally after 1055 usec
+firef     libre	office% &
+libreoffice&
+Created background process 10681
+kill 10681
+kill 10681
+Created foreground process 10766
+10766 terminated normally after 2045 usec
+^[[A    libreoffice&
+libreoffice&
+Created background process 10782
+ps -all
+ps -all
+Created foreground process 10820
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S 2236076 8921 7924  0  80   0 - 26781 n_tty_ pts/0    00:00:00 script
+1 S 2236076 8923 8921  0  80   0 - 26782 n_tty_ pts/0    00:00:00 script
+0 S 2236076 10254 8924  0 80   0 - 26781 n_tty_ pts/1    00:00:00 script
+1 S 2236076 10256 10254  0 80  0 - 26782 n_tty_ pts/1    00:00:00 script
+0 S 2236076 10625 10257  0 80  0 -   984 wait   pts/2    00:00:00 cli
+0 Z 2236076 10627 10625  0 80  0 -     0 exit   pts/2    00:00:00 sleep <defunct>
+0 Z 2236076 10639 10625  0 80  0 -     0 exit   pts/2    00:00:00 sleep <defunct>
+0 Z 2236076 10681 10625  0 80  0 -     0 exit   pts/2    00:00:00 oosplash <defunct>
+0 S 2236076 10782 10625  0 80  0 - 76226 futex_ pts/2    00:00:00 oosplash
+0 S 2236076 10811 10782 31 80  0 - 252095 poll_s pts/2   00:00:03 soffice.bin
+0 R 2236076 10820 10625  0 80  0 - 27035 -      pts/2    00:00:00 ps
+10820 terminated normally after 75248 usec
+kill 10782
+kill 10782
+Created foreground process 10829
+10829 terminated normally after 1535 usec
+kill -99  10782
+kill -9 10782
+Created foreground process 10831
+10831 terminated normally after 1188 usec
+e^[xx     x exit
+exit
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls[K[Kls[K[Kcd ..
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os[johanneo@rhel-sal-12 os]$ ls a[K-a[K[K[K[K[Kgit status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   cli/cli
+#	modified:   cli/cli.c
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	cli/.__afs2061
+#	cli/scripts/
+#	cli/sub/
+#	pipes/sub/
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os[johanneo@rhel-sal-12 os]$ git add .
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os[johanneo@rhel-sal-12 os]$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   cli/.__afs2061
+#	modified:   cli/cli
+#	modified:   cli/cli.c
+#	new file:   cli/scripts/cmp_nosig
+#	new file:   cli/scripts/cmp_sig
+#	new file:   cli/scripts/exec_sig
+#	new file:   cli/scripts/sig
+#	renamed:    cli/cli -> cli/sub/cli
+#	new file:   cli/sub/cli.c
+#	new file:   pipes/sub/digenv
+#	new file:   pipes/sub/digenv.c
+#
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os[johanneo@rhel-sal-12 os]$ cd cli
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ rm .__*
+rm: cannot remove `.__afs2061': Device or resource busy
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ subl
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ sublrm .__*
+rm: cannot remove `.__afs2061': Device or resource busy
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ git add[K[K[Kadd -d[K[K[K[K[K[Kad[K[Kadd -r .__*
+error: unknown switch `r'
+usage: git add [options] [--] <filepattern>...
+
+    -n, --dry-run         dry run
+    -v, --verbose         be verbose
+
+    -i, --interactive     interactive picking
+    -p, --patch           interactive patching
+    -e, --edit            edit current diff and apply
+    -f, --force           allow adding otherwise ignored files
+    -u, --update          update tracked files
+    -N, --intent-to-add   record only the fact that the path will be added later
+    -A, --all             add all, noticing removal of tracked files
+    --refresh             don't add, only refresh the index
+    --ignore-errors       just skip files which cannot be added because of errors
+
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ git add -i
+           staged     unstaged path
+  1:      +559/-0      nothing cli/.__afs2061
+  2:       binary      nothing cli/cli
+  3:        +7/-2        +0/-1 cli/cli.c
+  4:        +5/-0      nothing cli/scripts/cmp_nosig
+  5:        +5/-0      nothing cli/scripts/cmp_sig
+  6:        +4/-0      nothing cli/scripts/exec_sig
+  7:      +107/-0      nothing cli/scripts/sig
+  8:       binary      nothing cli/sub/cli
+  9:      +224/-0      nothing cli/sub/cli.c
+ 10:       binary      nothing pipes/sub/digenv
+ 11:       +65/-0      nothing pipes/sub/digenv.c
+
+*** Command

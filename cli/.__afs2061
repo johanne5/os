@@ -1,0 +1,647 @@
+Script started on Fri 12 Dec 2014 11:24:47 CET
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ ls -all
+total 27
+drwx------. 4 johanneo student  2048 Dec 12 11:24 ./
+drwx------. 6 johanneo student  2048 Dec 12 10:48 ../
+-rwx------. 1 johanneo student 13442 Dec 12 10:48 cli*
+-rw-------. 1 johanneo student  4905 Dec 12 10:48 cli.c
+-rw-------. 1 johanneo student     0 Dec 12 11:24 gcc -O3 -Wall -o cli cli.c
+drwx------. 2 johanneo student  2048 Dec 12 11:10 scripts/
+drwx------. 2 johanneo student  2048 Dec 12 10:56 sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ rm gcc\ -O3\ -Wall\ -o\ cli\ cli.c 
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ rm gcc\ -O3\ -Wall\ -o\ cli\ cli.c [K[K[K[K[K[K[K[K[Kls -all[K[2Pclearfs sa sub system:anyuser rlclear[Kman sa[K[K[K[K[K[Kclear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clearrm gcc\ -O3\ -Wall\ -o\ clls -all[K[2Pclearfs sa sub system:anyuser rlclear[Kfs sa sub system:anyuser rlclear[Kls -allrm gcc\ -O3\ -Wall\ -o\ clclear[K[Kscript ../sc[K[K[K[K[Kscripts/cmp_nosig
+Script started, file is scripts/cmp_nosig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ ls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ gcc -O3 -Wall -o cli [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit
+Script done, file is scripts/cmp_nosig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ rm cli
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ rm cliscript scripts/cmp_nosig
+Script started, file is scripts/cmp_nosig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ gcc -O3 -Wall -o [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls
+cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ gcc -O3 -Wall -o cli cli.c
+cli.c: In function ‘main’:
+cli.c:53: error: ‘a’ undeclared (first use in this function)
+cli.c:53: error: (Each undeclared identifier is reported only once
+cli.c:53: error: for each function it appears in.)
+cli.c:54: error: expected ‘;’ before ‘while’
+cli.c:46: warning: unused variable ‘bg’
+cli.c:45: warning: unused variable ‘tp’
+cli.c:44: warning: unused variable ‘sp’
+cli.c:43: warning: unused variable ‘args’
+cli.c:42: warning: unused variable ‘buf’
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ sub
+sub                       subl                      subscription-manager      subscription-manager-gui  
+[johanneo@rhel-sal-12 cli]$ subl cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ gcc -Wall -o cli cli.c
+/tmp/ccJMcUfI.o: In function `main':
+cli.c:(.text+0x38): warning: the `gets' function is dangerous and should not be used.
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ man[K[K[Kman fgets
+[?1049h[?1h=GETS(3)                    Linux Programmer’s Manual                   GETS(3)
+
+[1mNAME[0m
+       fgetc, fgets, getc, getchar, gets, ungetc - input of characters and strings
+
+[1mSYNOPSIS[0m
+       [1m#include[0m [1m<stdio.h>[0m
+
+       [1mint[0m [1mfgetc(FILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mchar[0m [1m*fgets(char[0m [1m*[0m[4ms[24m[1m,[0m [1mint[0m [4msize[24m[1m,[0m [1mFILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mint[0m [1mgetc(FILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mint[0m [1mgetchar(void);[0m
+
+       [1mchar[0m [1m*gets(char[0m [1m*[0m[4ms[24m[1m);[0m
+
+       [1mint[0m [1mungetc(int[0m [4mc[24m[1m,[0m [1mFILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+[1mDESCRIPTION[0m
+       [1mfgetc[0m() reads the next character from [4mstream[24m and returns it as an [4munsigned[24m [4mchar[24m cast to an [4mint[24m, or [1mEOF[0m on end of file or error.
+
+       [1mgetc[0m() is equivalent to [1mfgetc[0m() except that it may be implemented as a macro which evaluates [4mstream[24m more than once.
+
+       [1mgetchar[0m() is equivalent to [1mgetc([0m[4mstdin[24m[1m)[0m.
+
+       [1mgets[0m()  reads  a  line from [4mstdin[24m into the buffer pointed to by [4ms[24m until either a terminating newline or [1mEOF[0m, which it replaces with [1m'\0'[0m.  No check for buffer overrun is performed
+       (see BUGS below).
+
+       [1mfgets[0m() reads in at most one less than [4msize[24m characters from [4mstream[24m and stores them into the buffer pointed to by [4ms[24m.  Reading stops after an [1mEOF[0m or a  newline.   If  a  newline  is
+       read, it is stored into the buffer.  A [1m'\0'[0m is stored after the last character in the buffer.
+
+       [1mungetc[0m()  pushes [4mc[24m back to [4mstream[24m, cast to [4munsigned[24m [4mchar[24m, where it is available for subsequent read operations.  Pushed-back characters will be returned in reverse order; only one
+       pushback is guaranteed.
+
+       Calls to the functions described here can be mixed with each other and with calls to other input functions from the [4mstdio[24m library for the same input stream.
+
+       For non-locking counterparts, see [1munlocked_stdio[0m(3).
+
+[1mRETURN[0m [1mVALUE[0m
+       [1mfgetc[0m(), [1mgetc[0m() and [1mgetchar[0m() return the character read as an [4munsigned[24m [4mchar[24m cast to an [4mint[24m or [1mEOF[0m on end of file or error.
+
+       [1mgets[0m() and [1mfgets[0m() return [4ms[24m on success, and NULL on error or when end of file occurs while no characters have been read.
+
+       [1mungetc[0m() returns [4mc[24m on success, or [1mEOF[0m on error.
+
+[1mCONFORMING[0m [1mTO[0m
+       C89, C99, POSIX.1-2001.  LSB deprecates [1mgets[0m().  POSIX.1-2008 removes the specification of [1mgets[0m().
+
+[1mBUGS[0m
+       Never use [1mgets[0m().  Because it is impossible to tell without knowing the data in advance how many characters [1mgets[0m() will read, and because [1mgets[0m() will continue to store  characters
+       past the end of the buffer, it is extremely dangerous to use.  It has been used to break computer security.  Use [1mfgets[0m() instead.
+
+:[K[K[K:[K[K[?1l>[?1049l]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ man fgetsgcc -Wall -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+ls
+Created foreground process 9302
+something went wrong with child process
+9302 exited with status 256 after 550 usec
+ls -all
+Created foreground process 9309
+ls: invalid option -- '
+'
+Try `ls --help' for more information.
+9309 exited with status 512 after 1683 usec
+ls --all
+Created foreground process 9310
+ls: unrecognized option '--all
+'
+Try `ls --help' for more information.
+9310 exited with status 512 after 1663 usec
+clear
+Created foreground process 9311
+something went wrong with child process
+9311 exited with status 256 after 521 usec
+exit
+Created foreground process 9341
+something went wrong with child process
+9341 exited with status 256 after 561 usec
+^CIgnored SIGINT!!
+^C^C^C^C^C^C^C^C^C
+Created foreground process 9342
+something went wrong with child process
+9342 exited with status 256 after 485 usec
+ecit
+Created foreground process 9351
+something went wrong with child process
+9351 exited with status 256 after 573 usec
+exit
+Created foreground process 9352
+something went wrong with child process
+9352 exited with status 256 after 492 usec
+Terminated
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cl[K[K[K[K./cligcc -Wall -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+ls
+ls
+
+Created foreground process 9444
+something went wrong with child process
+9444 exited with status 256 after 487 usec
+ls -all
+ls -all
+
+Created foreground process 9445
+ls: invalid option -- '
+'
+Try `ls --help' for more information.
+9445 exited with status 512 after 1626 usec
+Terminated
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ man fp[Kgets
+[?1049h[?1h=GETS(3)                    Linux Programmer’s Manual                   GETS(3)
+
+[1mNAME[0m
+       fgetc, fgets, getc, getchar, gets, ungetc - input of characters and strings
+
+[1mSYNOPSIS[0m
+       [1m#include[0m [1m<stdio.h>[0m
+
+       [1mint[0m [1mfgetc(FILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mchar[0m [1m*fgets(char[0m [1m*[0m[4ms[24m[1m,[0m [1mint[0m [4msize[24m[1m,[0m [1mFILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mint[0m [1mgetc(FILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mint[0m [1mgetchar(void);[0m
+
+       [1mchar[0m [1m*gets(char[0m [1m*[0m[4ms[24m[1m);[0m
+
+       [1mint[0m [1mungetc(int[0m [4mc[24m[1m,[0m [1mFILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+[1mDESCRIPTION[0m
+       [1mfgetc[0m() reads the next character from [4mstream[24m and returns it as an [4munsigned[24m [4mchar[24m cast to an [4mint[24m, or [1mEOF[0m on end of file or error.
+
+       [1mgetc[0m() is equivalent to [1mfgetc[0m() except that it may be implemented as a macro which evaluates [4mstream[24m more than once.
+
+       [1mgetchar[0m() is equivalent to [1mgetc([0m[4mstdin[24m[1m)[0m.
+
+       [1mgets[0m()  reads  a  line from [4mstdin[24m into the buffer pointed to by [4ms[24m until either a terminating newline or [1mEOF[0m, which it replaces with [1m'\0'[0m.  No check for buffer overrun is performed
+       (see BUGS below).
+
+       [1mfgets[0m() reads in at most one less than [4msize[24m characters from [4mstream[24m and stores them into the buffer pointed to by [4ms[24m.  Reading stops after an [1mEOF[0m or a  newline.   If  a  newline  is
+       read, it is stored into the buffer.  A [1m'\0'[0m is stored after the last character in the buffer.
+
+       [1mungetc[0m()  pushes [4mc[24m back to [4mstream[24m, cast to [4munsigned[24m [4mchar[24m, where it is available for subsequent read operations.  Pushed-back characters will be returned in reverse order; only one
+       pushback is guaranteed.
+
+       Calls to the functions described here can be mixed with each other and with calls to other input functions from the [4mstdio[24m library for the same input stream.
+
+       For non-locking counterparts, see [1munlocked_stdio[0m(3).
+
+[1mRETURN[0m [1mVALUE[0m
+       [1mfgetc[0m(), [1mgetc[0m() and [1mgetchar[0m() return the character read as an [4munsigned[24m [4mchar[24m cast to an [4mint[24m or [1mEOF[0m on end of file or error.
+
+       [1mgets[0m() and [1mfgets[0m() return [4ms[24m on success, and NULL on error or when end of file occurs while no characters have been read.
+
+       [1mungetc[0m() returns [4mc[24m on success, or [1mEOF[0m on error.
+
+[1mCONFORMING[0m [1mTO[0m
+       C89, C99, POSIX.1-2001.  LSB deprecates [1mgets[0m().  POSIX.1-2008 removes the specification of [1mgets[0m().
+
+[1mBUGS[0m
+       Never use [1mgets[0m().  Because it is impossible to tell without knowing the data in advance how many characters [1mgets[0m() will read, and because [1mgets[0m() will continue to store  characters
+       past the end of the buffer, it is extremely dangerous to use.  It has been used to break computer security.  Use [1mfgets[0m() instead.
+
+:[K[K[?1l>[?1049l]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ man fgets[4P./cligcc -Wall -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ gcc -Wall -o cli cli.c[13Pman fgets[4P./cli
+ls
+ls
+
+Created foreground process 9568
+cli  cli.c  scripts  sub
+9568 terminated normally after 1482 usec
+ls -all
+ls -all
+
+Created foreground process 9569
+ls: invalid option -- '
+'
+Try `ls --help' for more information.
+9569 exited with status 512 after 1638 usec
+ls -all
+ls -all
+
+Created foreground process 9570
+ls: invalid option -- '
+'
+Try `ls --help' for more information.
+9570 exited with status 512 after 1603 usec
+clear
+clear
+
+Created foreground process 9571
+[H[2J9571 terminated normally after 1175 usec
+ls -all
+ls -all
+
+Created foreground process 9572
+ls: invalid option -- '
+'
+Try `ls --help' for more information.
+9572 exited with status 512 after 1627 usec
+ls --all
+ls --all
+
+Created foreground process 9574
+ls: unrecognized option '--all
+'
+Try `ls --help' for more information.
+9574 exited with status 512 after 1653 usec
+exit
+exit
+
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls --[Kall
+total 36
+drwx------. 4 johanneo student  2048 Dec 12 11:42 ./
+drwx------. 6 johanneo student  2048 Dec 12 10:48 ../
+-rw-------. 1 johanneo student 12288 Dec 12 11:37 .__afs2061
+-rwx------. 1 johanneo student 10538 Dec 12 11:42 cli*
+-rw-------. 1 johanneo student  4958 Dec 12 11:42 cli.c
+drwx------. 2 johanneo student  2048 Dec 12 11:25 scripts/
+drwx------. 2 johanneo student  2048 Dec 12 10:56 sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+ls -all
+ls -all
+
+Created foreground process 9586
+ls: invalid option -- '
+'
+Try `ls --help' for more information.
+9586 exited with status 512 after 1635 usec
+cd .
+cd .
+
+cd
+cd
+
+pwd   ls
+ls
+
+Created foreground process 9587
+adk  bin  Desktop  Documents  Download	i3-4.8	i3-4.8.tar.bz2	Music  OldFiles  os  Pictures  Private	Public	public_html  README.html  sublime_text_3  Templates  Videos  workspace
+9587 terminated normally after 1643 usec
+cd os/cli
+cd os/cli
+
+pwd
+pwd
+
+Created foreground process 9596
+/afs/kth.se/home/j/o/johanneo
+9596 terminated normally after 1077 usec
+cler  ear
+clear
+
+Created foreground process 9603
+[H[2J9603 terminated normally after 1196 usec
+exit
+exit
+
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ man fgets
+[?1049h[?1h=GETS(3)                    Linux Programmer’s Manual                   GETS(3)
+
+[1mNAME[0m
+       fgetc, fgets, getc, getchar, gets, ungetc - input of characters and strings
+
+[1mSYNOPSIS[0m
+       [1m#include[0m [1m<stdio.h>[0m
+
+       [1mint[0m [1mfgetc(FILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mchar[0m [1m*fgets(char[0m [1m*[0m[4ms[24m[1m,[0m [1mint[0m [4msize[24m[1m,[0m [1mFILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mint[0m [1mgetc(FILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+       [1mint[0m [1mgetchar(void);[0m
+
+       [1mchar[0m [1m*gets(char[0m [1m*[0m[4ms[24m[1m);[0m
+
+       [1mint[0m [1mungetc(int[0m [4mc[24m[1m,[0m [1mFILE[0m [1m*[0m[4mstream[24m[1m);[0m
+
+[1mDESCRIPTION[0m
+       [1mfgetc[0m() reads the next character from [4mstream[24m and returns it as an [4munsigned[24m [4mchar[24m cast to an [4mint[24m, or [1mEOF[0m on end of file or error.
+
+       [1mgetc[0m() is equivalent to [1mfgetc[0m() except that it may be implemented as a macro which evaluates [4mstream[24m more than once.
+
+       [1mgetchar[0m() is equivalent to [1mgetc([0m[4mstdin[24m[1m)[0m.
+
+       [1mgets[0m()  reads  a  line from [4mstdin[24m into the buffer pointed to by [4ms[24m until either a terminating newline or [1mEOF[0m, which it replaces with [1m'\0'[0m.  No check for buffer overrun is performed
+       (see BUGS below).
+
+       [1mfgets[0m() reads in at most one less than [4msize[24m characters from [4mstream[24m and stores them into the buffer pointed to by [4ms[24m.  Reading stops after an [1mEOF[0m or a  newline.   If  a  newline  is
+       read, it is stored into the buffer.  A [1m'\0'[0m is stored after the last character in the buffer.
+
+       [1mungetc[0m()  pushes [4mc[24m back to [4mstream[24m, cast to [4munsigned[24m [4mchar[24m, where it is available for subsequent read operations.  Pushed-back characters will be returned in reverse order; only one
+       pushback is guaranteed.
+
+       Calls to the functions described here can be mixed with each other and with calls to other input functions from the [4mstdio[24m library for the same input stream.
+
+       For non-locking counterparts, see [1munlocked_stdio[0m(3).
+
+[1mRETURN[0m [1mVALUE[0m
+       [1mfgetc[0m(), [1mgetc[0m() and [1mgetchar[0m() return the character read as an [4munsigned[24m [4mchar[24m cast to an [4mint[24m or [1mEOF[0m on end of file or error.
+
+       [1mgets[0m() and [1mfgets[0m() return [4ms[24m on success, and NULL on error or when end of file occurs while no characters have been read.
+
+       [1mungetc[0m() returns [4mc[24m on success, or [1mEOF[0m on error.
+
+[1mCONFORMING[0m [1mTO[0m
+       C89, C99, POSIX.1-2001.  LSB deprecates [1mgets[0m().  POSIX.1-2008 removes the specification of [1mgets[0m().
+
+[1mBUGS[0m
+       Never use [1mgets[0m().  Because it is impossible to tell without knowing the data in advance how many characters [1mgets[0m() will read, and because [1mgets[0m() will continue to store  characters
+       past the end of the buffer, it is extremely dangerous to use.  It has been used to break computer security.  Use [1mfgets[0m() instead.
+
+:[K[K[?1l>[?1049l]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ man fgets[4P./clils -all[2Pclear./cligcc -Wall -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+ls -all
+ls -all
+
+Created foreground process 9695
+ls: invalid option -- '
+'
+Try `ls --help' for more information.
+9695 exited with status 512 after 1615 usec
+EXIT
+EXIT
+
+Created foreground process 9750
+something went wrong with child process
+9750 exited with status 256 after 569 usec
+exit
+exit
+
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cligcc -Wall -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+ls -all
+ls -all
+
+Created foreground process 9757
+cli  cli.c  scripts  sub
+9757 terminated normally after 1507 usec
+ls
+ls
+
+Segmentation fault (core dumped)
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ exit
+exit
+Script done, file is scripts/cmp_nosig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clearscript scripts/cmp_nosigrm cli[Kscript scripts/cmp_nosigrm cli[Kscript scripts/cmp_nosigclear[K[Kclearscript scripts/cmp_nosigclear[K[Kls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ pwd
+/afs/kth.se/home/j/o/johanneo/os/cli
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ pwd[1Plsclearscript scripts/cmp_nosigrm cli[Kscript scripts/cmp_nosigclear[Krm gcc\ -O3\ -Wall\ -o\ clls -all[Krm gcc\ -O3\ -Wall\ -o\ clclear[Kscript scripts/cmp_nosigrm cli[K[K[K[K[K[K[Kgcc -O[K[K-Wall -o cli cli.c
+cli.c: In function ‘main’:
+cli.c:62: warning: assignment makes integer from pointer without a cast
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ gcc -Wall -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+ls -all
+ls -all
+Created foreground process 9879
+total 44
+drwx------. 4 johanneo student  2048 Dec 12 11:56 .
+drwx------. 6 johanneo student  2048 Dec 12 10:48 ..
+-rw-------. 1 johanneo student 20480 Dec 12 11:56 .__afs2061
+-rwx------. 1 johanneo student 10570 Dec 12 11:56 cli
+-rw-------. 1 johanneo student  5000 Dec 12 11:56 cli.c
+drwx------. 2 johanneo student  2048 Dec 12 11:25 scripts
+drwx------. 2 johanneo student  2048 Dec 12 10:56 sub
+9879 terminated normally after 4383 usec
+exit
+exit
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ l[Kscript [K[K[K[K[K[K[Kscript scripts/cmp_nosig 
+Script started, file is scripts/cmp_nosig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ gcc -O3 -Wall -o[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit
+Script done, file is scripts/cmp_nosig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ rm cli
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ scr[K[K[Krm cli[4Plsscript scripts/cmp_nosig 
+Script started, file is scripts/cmp_nosig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ gcc -O[KWall -O3 -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ exit
+Script done, file is scripts/cmp_nosig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ script scripts/cmp_nosig [K[K[K[K[K[Ksig
+Script started, file is scripts/cmp_sig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ gcc -Wall -O3 -o[K[K-D SIGNALDETECTION=YES[K[K[KENABLED[K[K[K[K[K[K[KTRUE [K[K[K[K[KENABLE -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ exit
+Script done, file is scripts/cmp_sig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clearscript scripts/cmp_sig[K[K[K[K[K[K[Kexec_sig
+Script started, file is scripts/exec_sig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ ./cli[K[K[K[K[Kexit
+Script done, file is scripts/exec_sig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ script scripts/exec_sig[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Krm l[Kcli
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ rm cliscript scripts/exec_sig[1Psig[1Psig[1Psig[1Psig[1Psig
+Script started, file is scripts/sig
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ ls
+cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ gcc -Wall -O3 -D SIGNALDETECTION=ENABLE -o cli cli.c
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+
+
+Ouch! That hurts!
+
+
+Ouch! That hurts!
+cli   s sleep 100 &
+sleep 100 &
+Created background process 10583
+kill 10583
+kill 10583
+Created foreground process 10584
+10584 terminated normally after 1037 usec
+ls
+ls
+Created foreground process 10585
+cli  cli.c  scripts  sub
+10585 terminated normally after 1530 usec
+^CIgnored SIGINT!!
+exit
+exit
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+sleep 100 &
+sleep 100 &
+Created background process 10603
+kill 10603
+kill 10603
+Created foreground process 10612
+10612 terminated normally after 1039 usec
+ps -all
+ps -all
+Created foreground process 10613
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S 2236076 8921 7924  0  80   0 - 26781 n_tty_ pts/0    00:00:00 script
+1 S 2236076 8923 8921  0  80   0 - 26782 n_tty_ pts/0    00:00:00 script
+0 S 2236076 10254 8924  0 80   0 - 26781 n_tty_ pts/1    00:00:00 script
+1 S 2236076 10256 10254  0 80  0 - 26782 n_tty_ pts/1    00:00:00 script
+0 S 2236076 10602 10257  0 80  0 -   984 wait   pts/2    00:00:00 cli
+0 Z 2236076 10603 10602  0 80  0 -     0 exit   pts/2    00:00:00 sleep <defunct>
+0 R 2236076 10613 10602  0 80  0 - 27036 -      pts/2    00:00:00 ps
+10613 terminated normally after -887332 usec
+kill -9 sleep
+kill -9 sleep
+Created foreground process 10614
+kill: can't find process "sleep"
+10614 exited with status 256 after 11123 usec
+kill -9 10603
+kill -9 10603
+Created foreground process 10615
+10615 terminated normally after 1055 usec
+exit
+exit
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear./cliclear./cli
+sleep 10 &
+sleep 10 &
+Created background process 10626
+10626 terminated normally [signal]
+^[[A^[[A        k sleep 10&
+sleep 10&
+Created background process 10627
+kill 10627
+kill 10627
+Created foreground process 10636
+10636 terminated normally after 997 usec
+kill -9 10627
+kill -9 10627
+Created foreground process 10637
+10637 terminated normally after 1035 usec
+^[[A    sleep 20&
+sleep 20&
+Created background process 10639
+kill -9 10639
+kill -9 10639
+Created foreground process 10640
+10640 terminated normally after 1055 usec
+firef     libre	office% &
+libreoffice&
+Created background process 10681
+kill 10681
+kill 10681
+Created foreground process 10766
+10766 terminated normally after 2045 usec
+^[[A    libreoffice&
+libreoffice&
+Created background process 10782
+ps -all
+ps -all
+Created foreground process 10820
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S 2236076 8921 7924  0  80   0 - 26781 n_tty_ pts/0    00:00:00 script
+1 S 2236076 8923 8921  0  80   0 - 26782 n_tty_ pts/0    00:00:00 script
+0 S 2236076 10254 8924  0 80   0 - 26781 n_tty_ pts/1    00:00:00 script
+1 S 2236076 10256 10254  0 80  0 - 26782 n_tty_ pts/1    00:00:00 script
+0 S 2236076 10625 10257  0 80  0 -   984 wait   pts/2    00:00:00 cli
+0 Z 2236076 10627 10625  0 80  0 -     0 exit   pts/2    00:00:00 sleep <defunct>
+0 Z 2236076 10639 10625  0 80  0 -     0 exit   pts/2    00:00:00 sleep <defunct>
+0 Z 2236076 10681 10625  0 80  0 -     0 exit   pts/2    00:00:00 oosplash <defunct>
+0 S 2236076 10782 10625  0 80  0 - 76226 futex_ pts/2    00:00:00 oosplash
+0 S 2236076 10811 10782 31 80  0 - 252095 poll_s pts/2   00:00:03 soffice.bin
+0 R 2236076 10820 10625  0 80  0 - 27035 -      pts/2    00:00:00 ps
+10820 terminated normally after 75248 usec
+kill 10782
+kill 10782
+Created foreground process 10829
+10829 terminated normally after 1535 usec
+kill -99  10782
+kill -9 10782
+Created foreground process 10831
+10831 terminated normally after 1188 usec
+e^[xx     x exit
+exit
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ clear
+[H[2J]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls[K[Kls[K[Kcd ..
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os[johanneo@rhel-sal-12 os]$ ls a[K-a[K[K[K[K[Kgit status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   cli/cli
+#	modified:   cli/cli.c
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	cli/.__afs2061
+#	cli/scripts/
+#	cli/sub/
+#	pipes/sub/
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os[johanneo@rhel-sal-12 os]$ git add .
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os[johanneo@rhel-sal-12 os]$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   cli/.__afs2061
+#	modified:   cli/cli
+#	modified:   cli/cli.c
+#	new file:   cli/scripts/cmp_nosig
+#	new file:   cli/scripts/cmp_sig
+#	new file:   cli/scripts/exec_sig
+#	new file:   cli/scripts/sig
+#	renamed:    cli/cli -> cli/sub/cli
+#	new file:   cli/sub/cli.c
+#	new file:   pipes/sub/digenv
+#	new file:   pipes/sub/digenv.c
+#
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os[johanneo@rhel-sal-12 os]$ cd cli
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ rm .__*
+rm: cannot remove `.__afs2061': Device or resource busy
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ subl
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ sublrm .__*
+rm: cannot remove `.__afs2061': Device or resource busy
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ git add[K[K[Kadd -d[K[K[K[K[K[Kad[K[Kadd -r .__*
+error: unknown switch `r'
+usage: git add [options] [--] <filepattern>...
+
+    -n, --dry-run         dry run
+    -v, --verbose         be verbose
+
+    -i, --interactive     interactive picking
+    -p, --patch           interactive patching
+    -e, --edit            edit current diff and apply
+    -f, --force           allow adding otherwise ignored files
+    -u, --update          update tracked files
+    -N, --intent-to-add   record only the fact that the path will be added later
+    -A, --all             add all, noticing removal of tracked files
+    --refresh             don't add, only refresh the index
+    --ignore-errors       just skip files which cannot be added because of errors
+
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ git add -i
+           staged     unstaged path
+  1:      +559/-0      nothing cli/.__afs2061
+  2:       binary      nothing cli/cli
+  3:        +7/-2        +0/-1 cli/cli.c
+  4:        +5/-0      nothing cli/scripts/cmp_nosig
+  5:        +5/-0      nothing cli/scripts/cmp_sig
+  6:        +4/-0      nothing cli/scripts/exec_sig
+  7:      +107/-0      nothing cli/scripts/sig
+  8:       binary      nothing cli/sub/cli
+  9:      +224/-0      nothing cli/sub/cli.c
+ 10:       binary      nothing pipes/sub/digenv
+ 11:       +65/-0      nothing pipes/sub/digenv.c
+
+*** Commands ***
+  1: [s]tatus	  2: [u]pdate	  3: [r]evert	  4: [a]dd untracked
+  5: [p]atch	  6: [d]iff	  7: [q]uit	  8: [h]elp
+What now> q
+Bye.
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ls
+cli*  cli.c  scripts/  sub/
+]0;johanneo@rhel-sal

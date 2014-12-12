@@ -50,17 +50,13 @@ int main(int argc, char *argv[])
 	if(SIG) CHLDhandlerreg(); //selektiv registrering av SIGCHLD handler
 
 	/*Roughly prompts user for command, forks the process and executes
-	command either in foreground or background.*/
+	command either in foreground or background.*/a
 	while(1)
 	{
 		if(!SIG) zombieslayer(); //if zombies are not signalhandled, clean zombies
 		
 
-		fgets(buf, BUFSIZE, stdin); //prompt user for command
-		tp = buf;
-		while('\n'!=tp[0]) tp++; //finds the new line. Commands are executed when user hits enter.
-		tp[0] = '\0'; //removes the new line by ending string on that position
-
+		gets(buf); //prompt user for command
 		if(('\0'==buf[0] || ' '==buf[0]) ) //checking for illegal commands i.e space and cr
 		{
 			printf("Ouch! That hurts!\n");
