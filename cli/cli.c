@@ -22,10 +22,12 @@ definierad används signaler för att avsluta zombies.
 Annars körs waitpid mellan varje kommando som städar upp
 zombies.*/
 #define BUFSIZE 70
-#ifdef SIGNALDETECTION
-	#define SIG 1
+#ifndef SIGNALDETECTION
+	#define SIGNALDETECTION 0
 #else
-	#define SIG 0
+	#if(1!=SIGNALDETECTION)
+		#define SIGNALDETECTION 0
+	#endif
 #endif
 
 void zombieslayer(void);
@@ -47,16 +49,21 @@ int main(int argc, char *argv[])
 
 
 	signal(SIGINT, INThandler); //registering handler for SIGINT
-	if(SIG) CHLDhandlerreg(); //selektiv registrering av SIGCHLD handler
+	if(SIGNALDETECTION) CHLDhandlerreg(); //selektiv registrering av SIGCHLD handler
 
 	/*Roughly prompts user for command, forks the process and executes
 	command either in foreground or background.*/
 	while(1)
 	{
-		if(!SIG) zombieslayer(); //if zombies are not signalhandled, clean zombies
+		if(!SIGNALDETECTION) zombieslayer(); //if zombies are not signalhandled, clean zombies
 		
 
-		fgets(buf, BUFSIZE, stdin); //prompt user for command
+		if(NULL==fgets(buf, BUFSIZE, stdin)) //prompt user for command
+		{
+			printf("failed reading command");
+			exit(1);
+		}
+
 		tp = buf;
 		while('\n'!=tp[0]) tp++; //finds the new line. Commands are executed when user hits enter.
 		tp[0] = '\0'; //removes the new line by ending string on that position
@@ -94,8 +101,22 @@ int main(int argc, char *argv[])
 		if(!strcmp("exit", args[0])) exit(0); //built in command
 		if(!strcmp("cd", args[0])) //built in command
 		{
-			if(NULL==args[1]) chdir(getenv("HOME")); //if no param. to cd, set working dir to HOME
-			else chdir(args[1]);
+			if(NULL==args[1]) //if no param. to cd, set working dir to HOME
+			{
+				if(-1==chdir(getenv("HOME")))
+				{
+					printf("failed to change working directory\n");
+					exit(1);
+				}
+			}
+			else
+			{
+			 if(-1==chdir(args[1]))
+				{
+					printf("failed to change working directory\n");
+					exit(1);
+				}
+			}
 			continue;
 		}
 
@@ -145,7 +166,6 @@ void zombieslayer(void)
 /*Ignoring SIGINT*/
 void INThandler(int sig)
 {
-	signal(sig, SIG_IGN);
 	printf("Ignored SIGINT!!\n" );
 
 }
@@ -224,5 +244,5 @@ void fgwait(pid_t pid)
 
 	printf(" after %ld usec\n", (tv.tv_usec-t)); //printing time difference
 	sigrelse(SIGINT); //reenabling the signals
-	sighold(SIGCHLD);
+	sigrelse(SIGCHLD);
 }

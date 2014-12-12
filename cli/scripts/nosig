@@ -1,0 +1,45 @@
+Script started on Fri 12 Dec 2014 14:42:47 CET
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[?1034h[johanneo@rhel-sal-12 cli]$ gcc -Wall -O3 -D SIGNALDETECTION="anything_but_1" -o cli cli.c
+cli.c:29:1: warning: "SIGNALDETECTION" redefined
+<command-line>: warning: this is the location of the previous definition
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ ./cli
+sleep 30&
+Created background process 15657
+echo tic
+Created foreground process 15658
+tic
+15658 terminated normally after 949 usec
+echo tac
+Created foreground process 15659
+tac
+15659 terminated normally after 989 usec
+echo tic
+Created foreground process 15660
+tic
+15660 terminated normally after 958 usec
+echo tac
+Created foreground process 15661
+tac
+15661 terminated normally after 990 usec
+sleep 1&
+Created background process 15662
+echo tic ta      "tic tac"
+Created foreground process 15663
+"tic tac"
+15663 terminated normally after 959 usec
+15657 terminated normally
+15662 terminated normally
+sleep 100&
+Created background process 15699
+echo tic
+Created foreground process 15700
+tic
+15700 terminated normally after 986 usec
+kill 15699
+Created foreground process 15701
+15701 terminated normally after 943 usec
+15699 exited with status 15
+exit
+]0;johanneo@rhel-sal-12:/afs/kth.se/home/j/o/johanneo/os/cli[johanneo@rhel-sal-12 cli]$ exit
+
+Script done on Fri 12 Dec 2014 14:45:46 CET
