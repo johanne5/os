@@ -1,0 +1,259 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"zom",
+				"zombiehandler"
+			],
+			[
+				"sig",
+				"signal"
+			],
+			[
+				"wait",
+				"waitpid"
+			],
+			[
+				"rea",
+				"readbackup"
+			],
+			[
+				"ar",
+				"argc"
+			],
+			[
+				"arg",
+				"argv"
+			],
+			[
+				"pri",
+				"printf	printf …"
+			],
+			[
+				"grep",
+				"grepargs"
+			],
+			[
+				"print",
+				"printenv"
+			],
+			[
+				"writ",
+				"WRITE"
+			],
+			[
+				"re",
+				"read"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 117.0,
+		"selected_items":
+		[
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"togg",
+				"Toggle Comment"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"tog",
+				"Toggle Comment"
+			],
+			[
+				"to",
+				"Toggle Comment"
+			],
+			[
+				"com",
+				"Toggle Block Comment"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/afs/nada.kth.se/home/i/u1zzynqi/os/malloc"
+	],
+	"file_history":
+	[
+		"/afs/nada.kth.se/home/i/u1zzynqi/os/malloc/add",
+		"/afs/nada.kth.se/home/i/u1zzynqi/dasak/labW/cloak",
+		"/afs/nada.kth.se/home/i/u1zzynqi/dasak/labW/xsrf/js.js",
+		"/afs/nada.kth.se/home/i/u1zzynqi/dasak/labW/xsrf/xsrf.html",
+		"/afs/nada.kth.se/home/i/u1zzynqi/dasak/labW/xsrf/iframe.html",
+		"/afs/nada.kth.se/home/i/u1zzynqi/dasak/labW/zoobar/demo-client.php",
+		"/afs/nada.kth.se/home/i/u1zzynqi/dasak/labW/zoobar/svc-echo.php",
+		"/afs/nada.kth.se/home/i/u1zzynqi/os/cli/.__afsD737",
+		"/afs/nada.kth.se/home/i/u1zzynqi/ingmet/hu",
+		"/afs/nada.kth.se/home/i/u1zzynqi/dasak/labS/report",
+		"/afs/nada.kth.se/home/i/u1zzynqi/os/cli/cli.c",
+		"/afs/nada.kth.se/home/i/u1zzynqi/os/pipes/src/digenv",
+		"/afs/nada.kth.se/home/i/u1zzynqi/os/pipes/src/digenv.c",
+		"/afs/nada.kth.se/home/i/u1zzynqi/os/pipes/src/.__afsF80F"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/afs/nada.kth.se/home/i/u1zzynqi/dasak/labW/zoobar",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"cookie",
+			"10",
+			"noerr",
+			"buf",
+			"fd[WRITE]",
+			"fd[READ]"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"WRITE",
+			"READ"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 235.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "malloc.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 292.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

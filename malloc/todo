@@ -1,0 +1,12 @@
+Hur fungerar mmap?
+Hur implementera minnesallokeringsmetoder?
+
+Vad innerbär implementationerna:
+	*First-fit
+		If it fits it fits
+	*Best-fit
+		Least fragmentation
+	*Worst-fit
+		Most fragmentation
+	*Quick-fit
+?
