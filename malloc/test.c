@@ -2,11 +2,25 @@
 
 int main(int argc, char *argv[])
 {
-	//printf("this happens\n");
-	int* p = our_malloc((size_t) sizeof(int));
-	*p=42;
-	printf("%p %d\n", p,*p);
-	munmap(p, (size_t) sizeof(int));
+	void *p = our_malloc((size_t) 240);
+	// printf("%p\n", p);
+
+	
+	our_free(p);
+
+
+
+	void *p1, *p2;
+	p1 = our_malloc((size_t) 112);
+	// printf("%p\n", p);
+	p2 = our_malloc((size_t) 112);
+	// printf("%p\n", p);
+	our_free(p1);
+	our_free(p2);
+
+	p = our_malloc((size_t) 240);
+	our_free(p);
+
 
 	return 0;
 }
