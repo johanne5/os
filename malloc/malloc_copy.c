@@ -1,9 +1,8 @@
 
 #define HEADERSIZE sizeof(Header)
-//#define MINSIZE 4096
-#define MINSIZE 0
+#define MINSIZE 4096
 #define nunits(x) (((x) + HEADERSIZE -1) / HEADERSIZE + 1)
-#define STRATEGY 3
+#define STRATEGY 2
 
 void *base = NULL;
 
@@ -24,14 +23,12 @@ void init_header(Header *, int);
 void *extend_heap(int);
 void *find_block(int);
 void our_free(void *);
-void print_list(void);
-void *fit123(int);
+//void print_list(void);
 void *first_fit(int);
-void *best_fit(int);
-void *worst_fit(int);
+void *best_worst_fit(int);
 void *use_block(Header *, Header *, int);
-void insert_to_list(Header *);
-void merge_blocks(Header *, Header *);
+Header *insert_to_list(Header *);
+void merge_blocks(Header *);
 
 /*
 Returns an allocated memory block of the specified size size.
@@ -42,8 +39,7 @@ void *our_malloc(size_t size)
 	if(size==0)		//Returns null-pointer if size is zero
 		return (void *) NULL;
 	void *p = find_block(nunits(size));	// finds a block of sufficient size using predefined allocation strategy
-	if(p != (void *) -1)
-		init_header((Header *)p, nunits(size));
+	init_header((Header *) p, nunits(size)); //writing the header of the memory block
 	return (void *)((Header *)p + 1); //returns the pointer to the address right after the header
 }
 
@@ -58,35 +54,58 @@ void *find_block(int nunits)
 
 	switch(STRATEGY)
 	{
+		case 1:
+			p = first_fit(nunits);
+			break;
+		case 2: //best fit
+			p = best_worst_fit(nunits);
+			break;
+		case 3: //worst fit
+			p = best_worst_fit(nunits);
+			break;
 		case 4:
 			break;
-		default:
-			p = fit123(nunits);
 	}
 	return p;
 }
 
-void * fit123(int nunits)
+void *best_worst_fit(int nunits)
 {
-	void *p;
-	if(!base) //list is empty
+	long diff = -1;
+	void *p = (void *) NULL;
+	Header *current = (Header *) base, *previous = current;
+	while(current)
+	{
+		if(current->block.size-nunits > -1) //block sufficient size
+		{
+			if(STRATEGY == 2)
+			{
+				if(diff == -1 || current->block.size-nunits < diff)
+				{
+					diff = current->block.size-nunits;
+					p = current;
+				}
+			}
+
+			else if(STRATEGY == 3)
+			{
+				if(current->block.size-nunits > diff)
+				{
+					diff = current->block.size-nunits;
+					p = current;
+				}
+			}
+		}
+		previous = current;
+		current = current->block.next;
+	}
+
+
+
+	if(!p)
 		p = extend_heap(nunits);
 	else
-	{
-		switch(STRATEGY)
-		{
-			case 1:
-				p = first_fit(nunits);
-				break;
-			case 2:
-				p = best_fit(nunits);
-				break;
-			case 3:
-				p = worst_fit(nunits);
-		}
-		if(!p)
-			p = extend_heap(nunits);
-	}
+		p = use_block(current, previous, nunits);
 	return p;
 }
 
@@ -94,83 +113,33 @@ void *first_fit(int nunits)
 {
 	void *p;
 
-	Header * current = base, * previous = current;
-	while(current) // as long as the end of the list has not been reached
+	if(base) //if the free-list contains any element
 	{
-		if(current->block.size >= nunits) //if block is big enough...
+		Header * current = base, * previous = current;
+		while(current) // as long as the end of the list has not been reached
 		{
-			p = use_block(current, previous, nunits);
-			break;
-		}
-		previous = current;	//move to next element
-		current = current->block.next;
-	}
-	if(!current) //reached end of list without finding sufficient block
-		p = NULL;
-	return p;
-}
-
-void *best_fit(int nunits)
-{
-	long diff = -1;
-	void *p = NULL;
-
-	Header *current = base, *previous = current;
-
-	while(current)
-	{
-		if((int)(current->block.size)-nunits>-1 ) //block sufficient size
-		{
-			if(diff == -1 || (int)(current->block.size)-nunits < diff)
+			if(current->block.size >= nunits) //if block is big enough...
 			{
-
-				diff = (int)(current->block.size)-nunits;
-				p = current;
+				p = use_block(current, previous, nunits);
+				break;
 			}
+			previous = current;	//move to next element
+			current = current->block.next;
 		}
-		previous = current;
-		current = current->block.next;
+
+		if(!current) //reached end of list without finding sufficient block
+			p = extend_heap(nunits);
 	}
-	if(p)
-		p = use_block(p, previous, nunits);
+	else //list is empty
+		p = extend_heap(nunits);
 	return p;
 }
-
-void *worst_fit(int nunits)
-{
-	long diff = -1;
-	void *p = NULL;
-
-	Header *current = base, *previous = current;
-
-	while(current)
-	{
-		if((int)(current->block.size)-nunits>-1 ) //block sufficient size
-		{
-			if((int)(current->block.size)-nunits > diff)
-			{
-				diff = (int)(current->block.size)-nunits;
-				p = current;
-			}
-		}
-		previous = current;
-		current = current->block.next;
-	}
-	if(p)
-		p = use_block(p, previous, nunits);
-	return p;
-}
-
 
 void *use_block(Header *b, Header *previous, int nunits)
 {
-	//printf("this happens\n");
-	//printf("current : %p\nprevious: %p\n",b,previous);
 	void *p;
 	if (b->block.size == nunits) //... and is exactly as big as specified
 	{
-
-
 		p = b;
 		if(b == base) //if it was the first element, move base to the next element
 			base = b->block.next;
@@ -179,7 +148,6 @@ void *use_block(Header *b, Header *previous, int nunits)
 	}
 	else //and is bigger than necessary
 	{
-
 		b->block.size -= nunits; //chop off end of block
 		p = b + b->block.size; //select the chopped off part
 	}
@@ -188,40 +156,32 @@ void *use_block(Header *b, Header *previous, int nunits)
 
 void *extend_heap(int nunits)
 {
+	//nunits = nunits < nunits(MINSIZE) ? nunits(MINSIZE) : nunits;
+	
 	Header *p;
-
-	if(nunits + 1 < nunits(MINSIZE))
+	
+	if(nunits < nunits(MINSIZE))
 	{
 		p = (Header *) mmap(NULL, (size_t) (nunits(MINSIZE) * HEADERSIZE), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-		if(p != (void *) -1)
-		{
-			init_header(p, nunits(MINSIZE));
-			p->block.size -= nunits; //chop off end of block
-			our_free(p+1);
-			p = p + p->block.size;
-		}
-		else
-			p = (Header *) mmap(NULL, (size_t) (nunits * HEADERSIZE), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+		init_header(p, nunits(MINSIZE));
+		p->block.size -= nunits; //chop off end of block
+		insert_to_list(p);
+		p = p + p->block.size;
 	}
 	else
 	{
 		p = (Header *) mmap(NULL, (size_t) (nunits * HEADERSIZE), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-	}
+		init_header(p, nunits);
+	}	
 	return p;
 }
 
-void our_free(void *vp)
-{
-	Header *p = (Header *)vp - 1; //p points at header
-	insert_to_list(p);
-}
-
-void insert_to_list(Header *p)
+Header *insert_to_list(Header *p)
 {
 	Header *previous = base, *current = base;
 	while(1)
 	{
-		if (current == NULL) //empty list
+		if (current == (Header *) NULL) //empty list
 			break;
 		else if (p > current) //block is to be placed further down the list (sorted by ascending address)
 		{
@@ -232,7 +192,7 @@ void insert_to_list(Header *p)
 			break;
 	}
 	
-	if(base == NULL || current == base) //either the list is empty or p is the smaller than the first address and should be placed first
+	if(base == (void *) NULL || current == base) //either the list is empty or p is the smaller than the first address and should be placed first
 	{
 		p->block.next = base;
 		base = p;
@@ -242,13 +202,12 @@ void insert_to_list(Header *p)
 		p->block.next = current;
 		previous->block.next = p;
 	}
-
-	merge_blocks(previous, p);
+	return previous;
 }
 
-void merge_blocks(Header *previous, Header *p)
+void merge_blocks(Header *previous)
 {
-
+	Header *p = previous->block.next;
 	if(p != base && previous + previous->block.size == p) //merges with preceeding block if possible
 	{
 		printf("merging w previous\n");
@@ -265,18 +224,22 @@ void merge_blocks(Header *previous, Header *p)
 	}	
 }
 
+void our_free(void *vp)
+{
+	Header *p = (Header *)vp - 1; //p points at header
+	Header *previous = insert_to_list(p);
+	merge_blocks(previous);
+	
+	
+}
 
 void print_list()
 {
-	Header *current = base;
-	int i = 1;
+	Header *current = (Header *) base;
 	while(current)
 	{
-		printf("%d: %p, size: %lu next: %p\n",i, current+1, current->block.size*HEADERSIZE,current->block.next+1);
+		printf("%p\n", current+1);
 		current = current->block.next;
-		i++;
 	}
-	if(i==1)
-		printf("Empty list!\n");
 	printf("\n\n");
 }

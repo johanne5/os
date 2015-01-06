@@ -2,25 +2,54 @@
 
 int main(int argc, char *argv[])
 {
-	void *p = our_malloc((size_t) 240);
-	// printf("%p\n", p);
+	void *p0, *p1, *p2;
+	p0 = our_malloc((size_t) 240);
+
+	// // printf("%p\n", p);
+
+	print_list();
+	our_free(p0);
+
+	print_list();
+
+
+
+
 
 	
-	our_free(p);
-
-
-
-	void *p1, *p2;
 	p1 = our_malloc((size_t) 112);
+	printf("Iran\n");
+
+	print_list();
+
 	// printf("%p\n", p);
+
 	p2 = our_malloc((size_t) 112);
+	print_list();
 	// printf("%p\n", p);
-	our_free(p1);
+	// p3 = our_malloc((size_t) 112);
+	//printf("p0: %p\np1: %p\np2: %p\n\n", p0, p1, p2 );
+	
+
 	our_free(p2);
 
-	p = our_malloc((size_t) 240);
-	our_free(p);
+	
+	print_list();
+	
+	//printf("hello\n");
+	our_free(p1);
 
+	print_list();
+	
+	
+	// our_free(p3);
+
+	p0 = our_malloc((size_t) 240);
+
+	print_list();
+		
+	our_free(p0);
+	print_list();
 
 	return 0;
 }
