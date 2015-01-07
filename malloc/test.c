@@ -3,8 +3,9 @@
 int main(int argc, char *argv[])
 {
 	void *p0, *p1, *p2;
-	p0 = our_malloc((size_t) 240);
 
+	p0 = our_malloc((size_t) 64);
+	printf("Iran\n");
 	// // printf("%p\n", p);
 
 	print_list();
@@ -17,14 +18,14 @@ int main(int argc, char *argv[])
 
 
 	
-	p1 = our_malloc((size_t) 112);
-	printf("Iran\n");
+	p1 = our_malloc((size_t) 32);
+	
 
 	print_list();
 
 	// printf("%p\n", p);
 
-	p2 = our_malloc((size_t) 112);
+	p2 = our_malloc((size_t) 32);
 	print_list();
 	// printf("%p\n", p);
 	// p3 = our_malloc((size_t) 112);
@@ -44,7 +45,7 @@ int main(int argc, char *argv[])
 	
 	// our_free(p3);
 
-	p0 = our_malloc((size_t) 240);
+	p0 = our_malloc((size_t) 64);
 
 	print_list();
 		

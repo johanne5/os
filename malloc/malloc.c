@@ -5,7 +5,8 @@
 #define nunits(x) (((x) + HEADERSIZE -1) / HEADERSIZE + 1)
 #define STRATEGY 3
 
-void *base = NULL;
+#define NLISTS 7
+#define BLOCKS_TO_ALLOCATE 10
 
 typedef union header
 {
@@ -20,6 +21,11 @@ typedef union header
 	} _align;
 } Header;
 
+void *base = NULL;
+
+void *bases[7] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+int list_size[7] = {nunits(8), nunits(16), nunits(32), nunits(64), nunits(128), nunits(256), nunits(0)};
+
 void init_header(Header *, int);
 void *extend_heap(int);
 void *find_block(int);
@@ -29,6 +35,8 @@ void *fit123(int);
 void *first_fit(int);
 void *best_fit(int);
 void *worst_fit(int);
+void *quick_fit(int);
+int select_list(int);
 void *use_block(Header *, Header *, int);
 void insert_to_list(Header *);
 void merge_blocks(Header *, Header *);
@@ -54,11 +62,12 @@ void init_header(Header * hp, int nunits)
 
 void *find_block(int nunits)
 {
-	void *p;
+	void *p = NULL;
 
 	switch(STRATEGY)
 	{
 		case 4:
+			p = quick_fit(nunits);
 			break;
 		default:
 			p = fit123(nunits);
@@ -68,7 +77,7 @@ void *find_block(int nunits)
 
 void * fit123(int nunits)
 {
-	void *p;
+	void *p = NULL;
 	if(!base) //list is empty
 		p = extend_heap(nunits);
 	else
@@ -161,6 +170,38 @@ void *worst_fit(int nunits)
 	return p;
 }
 
+void *quick_fit(int nunits)
+{
+	void *base_copy = base, *p = NULL; //Välj lista (utifrån storlekar)
+	int list_index = select_list(nunits);
+	nunits = list_size[list_index];
+	base = bases[list_index];
+
+	if(!base) //list is empty
+		p = extend_heap(nunits);
+	else
+	{
+		p = first_fit(nunits);
+		if(!p)
+			p = extend_heap(nunits);
+	}
+	base = base_copy;
+	return p;
+}
+
+int select_list(int nunits)
+{
+	int i = 0;
+
+	while(list_size[i])
+	{
+		if(nunits <= list_size[i])
+			break;
+		i++;
+	}
+	return i;
+}
+
 
 void *use_block(Header *b, Header *previous, int nunits)
 {
@@ -188,7 +229,28 @@ void *use_block(Header *b, Header *previous, int nunits)
 
 void *extend_heap(int nunits)
 {
-	Header *p;
+	Header *p, *q;
+
+	if(STRATEGY == 4) {
+		p = (Header *) mmap(NULL, (size_t) (BLOCKS_TO_ALLOCATE * nunits * HEADERSIZE), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+		if(p != (void *) -1)
+		{
+			q = p;
+			int i = 0;
+			for(; i<BLOCKS_TO_ALLOCATE; i++)
+			{
+				init_header(q, nunits);
+				if(i)
+					free(q+1);
+			}
+		}
+		else
+		{
+			p = (Header *) mmap(NULL, (size_t) (nunits * HEADERSIZE), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+		}
+
+		return p;
+	}
 
 	if(nunits + 1 < nunits(MINSIZE))
 	{
@@ -243,7 +305,8 @@ void insert_to_list(Header *p)
 		previous->block.next = p;
 	}
 
-	merge_blocks(previous, p);
+	if(STRATEGY != 4)
+		merge_blocks(previous, p);
 }
 
 void merge_blocks(Header *previous, Header *p)
