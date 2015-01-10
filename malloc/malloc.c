@@ -1,3 +1,4 @@
+#include "malloc.h"
 
 #define HEADERSIZE sizeof(Header)
 #define MINSIZE 512 //Allocates this amount of memory or more for most strategies
@@ -14,43 +15,14 @@ Strategies:
 #define BLOCKS_TO_ALLOCATE 10
 #define DB 1
 
-/*The list element (memory block)*/
-typedef union header
-{
-	struct
-	{
-		size_t size; //the size in 
-		union header *next;
-	} block;
-	struct
-	{
-		long ar[2];
-	} _align;
-} Header;
+
 
 void *base = NULL; //Base of the common list for f-fit, b-fit and w-fit
 void *ql[NRQUICKLISTS]; //The quick-lists bases for q-fit
 void *end_heap = 0; //The adress at the end of the heap
 
 
-/* Explicit function declarations */
-void init_header(Header *, int);
-void our_free(void *);
-void *extend_heap(int);
-void *find_block(int);
-void print_list(void);
-void print_lists(void);
-void *fit123(int);
-void *first_fit(int);
-void *best_fit(int);
-void *worst_fit(int);
-void *quick_fit(int);
-int select_list(int);
-void *use_block(Header *, Header *, int);
-void insert_to_list(Header *);
-void merge_blocks(Header *, Header *);
-void init(void);
-int ql_size(int);
+
 
 /*
 The init() function initiates global variables
