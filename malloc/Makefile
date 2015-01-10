@@ -1,4 +1,4 @@
-ifdef NODEBUG
+ifdef NOWARNINGS
 WARNINGS = -w
 else
 WARNINGS = -Wall -Wno-deprecated-declarations
@@ -7,22 +7,25 @@ endif
 ifdef NODEBUG
 DEBUG = 
 else
-DEBUG = -g
+DEBUG = -ggdb
 endif
 
+#variables
 CC = gcc
-CFLAGS = -c $(DEBUG) $(WARNINGS) 
+CFLAGS = $(DEBUG) $(WARNINGS)
 
+#files
+DEPS = malloc.h
+TEST_SOURCE_FILES = test.c malloc.c
+TEST_OBJECT_FILES = $(TEST_SOURCE_FILES:.c=.o)
 
 all: test
 
-test: malloc.o test.o
-	$(CC) -o test malloc.o test.o
+test: $(TEST_OBJECT_FILES)
+	$(CC) -o $@ $^
 
-malloc.o: malloc.c
-	$(CC) $(CFLAGS) malloc.c
+%.o: %.c $(DEPS)
+	$(CC) -c $(CFLAGS) $<
 
-test.o: test.c
-	$(CC) $(CFLAGS) test.c
 clear:
 	rm -rf *.o test
