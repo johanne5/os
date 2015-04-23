@@ -55,68 +55,59 @@ int main(int argc, char *argv[])
 	command either in foreground or background.*/
 	while(1)
 	{
-		if(!SIGNALDETECTION) zombieslayer(); //if zombies are not signalhandled, clean zombies
-		
-
-		if(NULL==fgets(buf, BUFSIZE, stdin)) //prompt user for command
+		if(!SIGNALDETECTION)
+			zombieslayer(); //if zombies are not signalhandled, clean zombies
+		if(!fgets(buf, BUFSIZE, stdin)) //prompt user for command
 		{
 			printf("failed reading command");
 			exit(1);
 		}
 
 		tp = buf;
-		while('\n'!=tp[0]) tp++; //finds the new line. Commands are executed when user hits enter.
-		tp[0] = '\0'; //removes the new line by ending string on that position
+		while('\n' != *tp)
+			tp++; //finds the new line. Commands are executed when user hits enter.
+		*tp = '\0'; //removes the new line by ending string on that position
 
-		if(('\0'==buf[0] || ' '==buf[0]) ) //checking for illegal commands i.e space and cr
+		if(('\0'==*buf || ' '==*buf) ) //checking for illegal commands i.e space and cr
 		{
 			printf("Ouch! That hurts!\n");
 			continue;
 		}
 
-		tp = buf;
-		bg=0;
-		while('\0'!=*tp++) //searches command for '&' and sets the variable bg accordingly
+		for(tp = buf, bg = 0; '\0' != *tp && '&' != *tp; tp++); //searches command for '&' and sets the variable bg accordingly
+		if(*tp=='&')
 		{
-			if(*tp=='&')
-			{
-				*tp=' ';
-				bg=1;
-				break;
-			}
-		}
+			*tp=' ';
+			bg=1;
+		}	
 
 		sp=args;
-		sp[0] = strtok(buf, " "); //setting buf to split on space
+		*sp = strtok(buf, " "); //setting buf to split on space
 		sp++;
 
 		/*parsing the command and initialising the string array args*/
 		do
 		{
-			sp[0] = strtok(NULL, " "); //assigning next substring to args
+			*sp = strtok(NULL, " "); //assigning next substring to args
 			sp++;
-		} while (NULL!=sp[-1]);
+		} while (sp[-1]);
 
 
 		if(!strcmp("exit", args[0])) exit(0); //built in command
 		if(!strcmp("cd", args[0])) //built in command
 		{
-			if(NULL==args[1]) //if no param. to cd, set working dir to HOME
-			{
+			if(!args[1]) //if no param. to cd, set working dir to HOME
 				if(-1==chdir(getenv("HOME")))
 				{
 					printf("failed to change working directory\n");
 					exit(1);
 				}
-			}
 			else
-			{
-			 if(-1==chdir(args[1]))
+				if(-1==chdir(args[1]))
 				{
 					printf("failed to change working directory\n");
 					exit(1);
 				}
-			}
 			continue;
 		}
 
@@ -125,18 +116,17 @@ int main(int argc, char *argv[])
 		switch(pid = fork())
 		{
 			case 0:
-			execvp(args[0], args);
-			printf("something went wrong with child process\n");
-			exit(1);
+				execvp(args[0], args);
+				printf("something went wrong with child process\n");
+				exit(1);
 			case -1:
-			printf("child is DOA!!");
-			exit(1);
+				printf("child is DOA!!");
+				exit(1);
 
 			default:
-
-			printf("Created %s process %d\n", bg==0 ? "foreground" : "background", pid);
-
-			if(!bg) fgwait(pid); //if foregroundprocess, wait
+				printf("Created %s process %d\n", bg==0 ? "foreground" : "background", pid);
+				if(!bg) fgwait(pid); //if foregroundprocess, wait
+				break;
 		}	
 	}
 	return 0;
@@ -214,7 +204,7 @@ void fgwait(pid_t pid)
 	struct timeval tv; //struct for use with gettimeofday
 	time_t t; //the time variable
 
-	if(0!=gettimeofday(&tv, NULL))
+	if(gettimeofday(&tv, NULL))
 	{
 		printf("gettimeofday went wrong!!");
 		exit(1);
@@ -226,7 +216,7 @@ void fgwait(pid_t pid)
 		printf("Something went wrong when waiting for fg process\n");
 	}
 
-	if(0!=gettimeofday(&tv, NULL)) //update the time in tv
+	if(gettimeofday(&tv, NULL)) //update the time in tv
 	{
 		printf("gettimeofday went wrong!!");
 		exit(1);
